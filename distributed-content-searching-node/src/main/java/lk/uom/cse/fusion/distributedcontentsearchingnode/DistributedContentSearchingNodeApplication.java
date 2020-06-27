@@ -15,7 +15,10 @@ public class DistributedContentSearchingNodeApplication {
   }
 
   @Bean
-  public BSClient modelMapper() throws IOException {
-    return new BSClient();
+  public BSClient bsClient() throws IOException {
+    BSClient bsClient = new BSClient();
+    //bsClient.unRegister("hashan", "localhost", 8081);
+    bsClient.register("hashan", "localhost", 8081);
+    return bsClient;
   }
 }

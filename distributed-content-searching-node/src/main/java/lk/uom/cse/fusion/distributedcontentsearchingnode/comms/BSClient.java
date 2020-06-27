@@ -19,11 +19,11 @@ public class BSClient {
 
   private final DatagramSocket datagramSocket;
 
-  @Value("bootStrapServer.host")
-  private String BS_IP_ADDRESS;
+  //@Value("bootStrapServer.host")
+  private String BS_IP_ADDRESS="localhost";
 
-  @Value("bootStrapServer.port")
-  private int BS_Port;
+  //@Value("bootStrapServer.port")
+  private int BS_Port=55555;
 
   public BSClient() throws IOException {
     datagramSocket = new DatagramSocket();
