@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>lk.uom.cse.fusion</groupId>
+    <artifactId>distributed-content-searching</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>distributed-content-searching</name>
+    <description>A simple overlay-based solution that allows a set of nodes to share contents (e.g., music files) among
+        each other. Consider a set of nodes connected via some overlay topology. Each of the nodes has a set of files
+        that it is willing to share with other nodes. Suppose node x is interested in a file f. x issues a search query
+        to the overlay to locate a at least one node y containing that particular file. Once the node is identified, the
+        file f can be exchanged between X and y.
+    </description>
+
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+    <modules>
+        <module>distributed-content-searching-node</module>
+    </modules>
+
+</project>
