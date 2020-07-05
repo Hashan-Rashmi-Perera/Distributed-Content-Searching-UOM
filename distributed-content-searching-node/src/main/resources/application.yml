@@ -1,4 +1,0 @@
-# Bootstrap server config
-bootStrapServer:
-  host: localhost
-  port: 55555
