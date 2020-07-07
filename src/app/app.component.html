@@ -1,13 +1,20 @@
 <div style="text-align: center; margin: 3% 10%">
- <h1>Welcome to the music searcher</h1>
- <p>You can search for your favorite song below</p>
+ <h1>Welcome to the music downloader</h1>
+ <p>You can download for your favorite song below</p>
  <div class="searchbar">
    <div class="bar">
-     <input type="text" id="search_term" placeholder="Enter your text" />
+     <input type="text" [(ngModel)]="searchTerm" id="search_term" placeholder="Enter your text" />
    </div>
    <br>
-   <button type="button" mdbBtn color="primary" mdbWavesEffect >Search</button>
+   <button type="button"  (click)="onSearch(searchTerm)" mdbBtn color="primary" mdbWavesEffect >Search</button>
  </div>
- <div id="results_list"></div>
+ <div id="results_list">
+ 	<ul >
+ <li *ngFor="let item of serchList">
+  <span class="badge" (click)="addToEncounter(monster)">{{item.name}} </span>
+  <button type="button"  (click)="onDownlaod(item.link)" mdbBtn color="primary" mdbWavesEffect >Download</button>
+ </li>
+</ul>
+ </div>
 </div>
 
