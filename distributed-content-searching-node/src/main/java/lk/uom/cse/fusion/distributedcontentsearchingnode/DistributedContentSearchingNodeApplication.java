@@ -17,13 +17,14 @@ public class DistributedContentSearchingNodeApplication {
 
         try {
 
-            bsClient = new BSClient();
+            if(args.length>0)
+                bsClient = new BSClient(args[0],args[1],Integer.parseInt(args[2]));
+                else
+                    bsClient= new BSClient("osura", "localhost", 8081);
 
 
-            if(args.length>0)  bsClient.register(args[0],args[1],Integer.parseInt(args[2]));
-            else {
-                bsClient.register("osura", "localhost", 8081);
-            }
+             bsClient.register();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
