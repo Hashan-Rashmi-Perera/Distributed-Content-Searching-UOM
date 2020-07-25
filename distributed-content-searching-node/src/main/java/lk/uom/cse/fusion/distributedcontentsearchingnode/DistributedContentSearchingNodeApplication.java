@@ -4,6 +4,9 @@ import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.BSClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 import java.io.IOException;
 
 @SpringBootApplication

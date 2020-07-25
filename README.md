@@ -9,3 +9,7 @@ To run the client jar use the below command:
 example
 
     java -jar distributed-content-searching-node-0.0.1-SNAPSHOT.jar "fuk" "localhost" "7788" --server.port=7788
+
+Swagger url 
+    
+    http://localhost:7788/swagger-ui.html
