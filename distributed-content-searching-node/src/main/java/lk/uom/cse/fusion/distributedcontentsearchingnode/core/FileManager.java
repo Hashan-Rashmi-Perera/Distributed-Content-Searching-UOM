@@ -75,8 +75,7 @@ public class FileManager {
 
         //Get file from resources folder
         ClassLoader classLoader = getClass().getClassLoader();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader
-                (classLoader.getResourceAsStream(Constants.FILE_NAMES)));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream(Constants.FILE_NAMES)));
 
         try {
 

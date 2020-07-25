@@ -15,12 +15,12 @@ public class BoostrapController {
 
     @GetMapping(value="unregister")
     public void unregisterFromBSServer(){
-
-        try {
-            DistributedContentSearchingNodeApplication.bsClient.unRegister();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//
+//        try {
+//            //DistributedContentSearchingNodeApplication.bsClient.unRegister();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
