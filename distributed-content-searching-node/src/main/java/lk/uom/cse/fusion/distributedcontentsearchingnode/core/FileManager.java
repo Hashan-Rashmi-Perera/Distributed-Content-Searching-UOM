@@ -130,4 +130,13 @@ public class FileManager {
         File file = new File(rootFolder + fileSeparator + fileName);
         return file;
     }
+
+    public File getFileDetails(String name){
+
+        String fileSeparator = System.getProperty("file.separator");
+        //File file = new File(rootFolder + fileSeparator + fileName);
+        String rootFolder =   "." + fileSeparator + this.userName;
+        File fileDownload = new File(rootFolder + fileSeparator + name);
+        return fileDownload;
+    }
 }

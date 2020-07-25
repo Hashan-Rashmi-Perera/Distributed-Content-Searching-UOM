@@ -6,6 +6,7 @@ import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ChannelMessage;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.UDPClient;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.UDPServer;
 
+import java.io.File;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.ArrayList;
@@ -149,5 +150,9 @@ public class MessageBroker extends Thread {
 
     public String getFiles() {
         return this.fileManager.getFileNames();
+    }
+
+    public File getFileDeatils(String fileName) {
+        return this.fileManager.getFileDetails(fileName);
     }
 }
