@@ -1,6 +1,7 @@
 package lk.uom.cse.fusion.distributedcontentsearchingnode.controllers;
 
 
+import io.swagger.annotations.ApiOperation;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.DistributedContentSearchingNodeApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import java.io.IOException;
 public class BoostrapController {
 
     @GetMapping(value="unregister")
+    @ApiOperation(value="BS Unregister",
+    notes = "Unrister the node from boostrap server",response = Boolean.class)
     public void unregisterFromBSServer(){
 
         try {
