@@ -36,7 +36,7 @@ public class SpringFoxConfig {
                 "This api handles the operations of node",
                 "1.0",
                 "",
-                new Contact("Osura Gamalath","","osura.gamlathge@ikman.lk"),
+                null,
                 null,null, Collections.emptyList());
     }
 }
