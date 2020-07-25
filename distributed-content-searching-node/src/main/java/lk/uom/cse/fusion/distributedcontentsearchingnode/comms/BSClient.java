@@ -19,25 +19,36 @@ public class BSClient {
 
   private final DatagramSocket datagramSocket;
 
+
+
   //@Value("bootStrapServer.host")
   private String BS_IP_ADDRESS="localhost";
 
   //@Value("bootStrapServer.port")
   private int BS_Port=55555;
 
-  public BSClient() throws IOException {
+
+  private String clientUsername;
+  private String clientIP;
+  private int clientPort;
+
+
+  public BSClient(String clientUsername,String clientIP,int clientPort) throws IOException {
+      this.clientIP=clientIP;
+      this.clientUsername=clientIP;
+      this.clientPort=clientPort;
     datagramSocket = new DatagramSocket();
   }
 
-  public List<InetSocketAddress> register(String userName, String ipAddress, int port)
+  public List<InetSocketAddress> register()
       throws IOException {
-    String request = String.format(REG_FORMAT, ipAddress, port, userName);
+    String request = String.format(REG_FORMAT, clientIP, clientPort, clientUsername);
     request = String.format(MSG_FORMAT, request.length() + 5, request);
     return processBSResponse(sendOrReceive(request));
   }
 
-  public boolean unRegister(String userName, String ipAddress, int port) throws IOException {
-    String request = String.format(UNREG_FORMAT, ipAddress, port, userName);
+  public boolean unRegister() throws IOException {
+    String request = String.format(UNREG_FORMAT, clientIP, clientPort, clientUsername);
     request = String.format(MSG_FORMAT, request.length() + 5, request);
     return processBSUnregisterResponse(sendOrReceive(request));
   }
