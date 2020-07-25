@@ -5,6 +5,7 @@ import lk.uom.cse.fusion.distributedcontentsearchingnode.Constants;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.BSClient;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp.FTPClient;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp.FTPServer;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -14,6 +15,7 @@ import java.net.ServerSocket;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Getter
 public class GNode {
 
     private final Logger LOG = Logger.getLogger(GNode.class.getName());

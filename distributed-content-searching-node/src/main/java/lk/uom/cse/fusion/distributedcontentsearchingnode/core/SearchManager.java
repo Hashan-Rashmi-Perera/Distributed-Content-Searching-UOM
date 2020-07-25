@@ -3,17 +3,23 @@ package lk.uom.cse.fusion.distributedcontentsearchingnode.core;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.Constants;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.handlers.QueryHitHandler;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.utils.ConsoleTable;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class SearchManager {
+
+@Getter
+public class SearchManager {
 
     private MessageBroker messageBroker;
 
     private Map<Integer, SearchResult> fileDownloadOptions;
+
+    private Map<String, SearchResult> dosearchResults;
 
     SearchManager(MessageBroker messageBroker) {
         this.messageBroker = messageBroker;
@@ -21,11 +27,10 @@ class SearchManager {
 
     int doSearch(String keyword) {
 
-        Map<String, SearchResult> searchResults
-                = new HashMap<String, SearchResult>();
+        dosearchResults= new HashMap<String, SearchResult>();
 
         QueryHitHandler queryHitHandler = QueryHitHandler.getInstance();
-        queryHitHandler.setSearchResutls(searchResults);
+        queryHitHandler.setSearchResutls(dosearchResults);
         queryHitHandler.setSearchInitiatedTime(System.currentTimeMillis());
 
         this.messageBroker.doSearch(keyword);
@@ -39,7 +44,7 @@ class SearchManager {
             e.printStackTrace();
         }
 
-        printSearchResults(searchResults);
+        printSearchResults(dosearchResults);
         this.clearSearchResults();
         return fileDownloadOptions.size();
     }
