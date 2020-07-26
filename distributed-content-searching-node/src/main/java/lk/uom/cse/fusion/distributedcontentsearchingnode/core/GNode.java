@@ -1,6 +1,5 @@
 package lk.uom.cse.fusion.distributedcontentsearchingnode.core;
 
-import javafx.scene.control.TextArea;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.Constants;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.BSClient;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp.FTPClient;
@@ -115,17 +114,17 @@ public class GNode {
         }
     }
 
-    public void getFile(int fileOption, TextArea textArea) {
+/*    public void getFile(int fileOption, TextArea textArea) {
         try {
             SearchResult fileDetail = this.searchManager.getFileDetails(fileOption);
             System.out.println("The file you requested is " + fileDetail.getFileName());
             FTPClient ftpClient = new FTPClient(fileDetail.getAddress(), fileDetail.getTcpPort(),
-                    fileDetail.getFileName(),textArea);
+                    fileDetail.getFileName());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public String getUserName() {
         return userName;

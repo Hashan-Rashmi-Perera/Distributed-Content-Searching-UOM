@@ -11,21 +11,17 @@ import java.util.Map;
 
 @Slf4j
 @Service
-public class RegisterService {
+public class SearchService {
 
+  @Autowired private GNode gNode;
 
-    @Autowired
-    GNode gNode;
+  public Map<String, SearchResult> searchFile(String fileName) {
 
-
-    public  Map<String, SearchResult> searchFile(String fileName){
-
-        if (fileName != null && !fileName.equals("")) {
-            int results = gNode.doSearch(fileName);
-            return gNode.getSearchManager().getDosearchResults();
-        }
-        else {
-            throw new InvalidInput();
-        }
+    if (fileName != null && !fileName.equals("")) {
+      gNode.doSearch(fileName);
+      return gNode.getSearchManager().getDosearchResults();
+    } else {
+      throw new InvalidInput();
     }
+  }
 }

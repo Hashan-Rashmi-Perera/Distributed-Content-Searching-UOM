@@ -22,7 +22,7 @@ public class SpringFoxConfig {
         .select()
         .apis(
             RequestHandlerSelectors.basePackage(
-                "lk.uom.cse.fusion.distributedcontentsearchingnode.controllers"))
+                "lk.uom.cse.fusion.distributedcontentsearchingnode.resource"))
         .paths(PathSelectors.any())
         .build()
         .apiInfo(apiInfoDetails());
