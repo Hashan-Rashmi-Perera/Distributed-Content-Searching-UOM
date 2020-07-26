@@ -30,3 +30,8 @@ example
 ```shell script
 sh run.sh 1
 ```
+
+##### Swagger url 
+```html
+http://localhost:7788/swagger-ui.html
+```
