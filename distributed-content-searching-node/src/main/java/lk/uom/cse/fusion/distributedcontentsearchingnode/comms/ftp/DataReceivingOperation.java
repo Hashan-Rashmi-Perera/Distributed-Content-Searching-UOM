@@ -1,6 +1,8 @@
 package lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp;
 
 import javafx.scene.control.TextArea;
+import lk.uom.cse.fusion.distributedcontentsearchingnode.models.requests.FileRef;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.*;
 import java.net.Socket;
@@ -12,6 +14,9 @@ public class DataReceivingOperation implements Runnable {
     private String fileName;
 
     private TextArea textArea;
+
+    @Autowired
+    FileRef fileRef;
 
     public DataReceivingOperation(Socket server, String fileName) {
         this.serverSock = server;
@@ -54,7 +59,10 @@ public class DataReceivingOperation implements Runnable {
                 size -= bytesRead;
             }
 
+
             output.close();
+            File newFile = new File(fileName);
+            fileRef.getFilePath().set(newFile.getAbsolutePath());
             serverData.close();
 
             if (textArea == null){

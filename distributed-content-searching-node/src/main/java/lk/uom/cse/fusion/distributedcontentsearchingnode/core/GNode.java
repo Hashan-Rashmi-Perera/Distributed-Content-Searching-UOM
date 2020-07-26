@@ -3,13 +3,15 @@ package lk.uom.cse.fusion.distributedcontentsearchingnode.core;
 import javafx.scene.control.TextArea;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.Constants;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.BSClient;
-import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp.DataReceivingOperation;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp.FTPClient;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp.FTPServer;
 import lombok.Getter;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -106,61 +108,12 @@ public class GNode {
             FTPClient ftpClient = new FTPClient(fileDetail.getAddress(), fileDetail.getTcpPort(),
                     fileDetail.getFileName());
 
-
             System.out.println("Waiting for file download...");
             Thread.sleep(Constants.FILE_DOWNLOAD_TIMEOUT);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public File getFileForRestEndpoint(int fileOption){
-
-        BufferedReader in = null;
-        String fileName;
-
-        try {
-            SearchResult fileDetail = this.searchManager.getFileDetails(fileOption);
-            System.out.println("The file you requested is " + fileDetail.getFileName());
-            FTPClient ftpClient = new FTPClient(fileDetail.getAddress(), fileDetail.getTcpPort(),
-                    fileDetail.getFileName());
-
-            System.out.println("Waiting for file download...");
-            Thread.sleep(Constants.FILE_DOWNLOAD_TIMEOUT);
-
-            long start = System.currentTimeMillis();
-            Socket serverSock = new Socket(fileDetail.getAddress(), port);
-
-            System.out.println("Connecting...");
-            new DataReceivingOperation(serverSock, fileDetail.getFileName());
-
-            in = new BufferedReader(new InputStreamReader(
-                    serverSock.getInputStream()));
-            DataOutputStream dOut = new DataOutputStream(serverSock.getOutputStream());
-            dOut.writeUTF(fileName);
-            dOut.flush();
-            receiveFile();
-            in.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        /////
-        try {
-            in = new BufferedReader(new InputStreamReader(
-                    serverSock.getInputStream()));
-            DataOutputStream dOut = new DataOutputStream(serverSock.getOutputStream());
-            dOut.writeUTF(fileName);
-            dOut.flush();
-            receiveFile();
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //
-
-    }
-
     public void getFile(int fileOption, TextArea textArea) {
         try {
             SearchResult fileDetail = this.searchManager.getFileDetails(fileOption);
