@@ -1,15 +1,37 @@
 # Distributed-Content-Searching-UOM
 
 
+## Steps to run
+* extract the zip 
+* move to extract directory 
+* To run the client jar use the below 2 options:
 
-To run the client jar use the below command:
+##### option 1
+* Run below commands in the shell 
+```shell script
+cd Distributed-Content-Searching-UOM
+java -cp BootstrapServer/Java/: BootstrapServer # In windows os java -cp BootstrapServer/Java/; BootstrapServer
+path="distributed-content-searching-node/target/*.jar"
+mvn clean install -DskipTest
+java -jar $path --server.port=<port to up the appliation >
+```
+##### example
+```shell script
+$ java -jar distributed-content-searching-node-0.0.1-SNAPSHOT.jar --server.port=8084
+```
 
-```java -jar distributed-content-searching-node-0.0.1-SNAPSHOT.jar "Username" "IPAdress" "Port" --server.port=Port```
-
+##### option 2
+* if you have installed konsole run the run.sh script
+* provide the number of nodes required as a argument 
+```shell script
+sh run.sh <number of node>
+``` 
 example
+```shell script
+sh run.sh 1
+```
 
-    java -jar distributed-content-searching-node-0.0.1-SNAPSHOT.jar "fuk" "localhost" "7788" --server.port=7788
-
-Swagger url 
-    
-    http://localhost:7788/swagger-ui.html
+##### Swagger url 
+```html
+http://localhost:7788/swagger-ui.html
+```

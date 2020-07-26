@@ -1,46 +1,27 @@
+/**
+ * url: https://github.com/Hashan-Rashmi-Perera/Distributed-Content-Searching-UOM
+ */
 package lk.uom.cse.fusion.distributedcontentsearchingnode;
 
-import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.BSClient;
-import org.springframework.beans.factory.annotation.Value;
+import lk.uom.cse.fusion.distributedcontentsearchingnode.core.GNode;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 
-import java.io.IOException;
+import java.util.UUID;
 
 @SpringBootApplication
 public class DistributedContentSearchingNodeApplication {
 
-     public static BSClient bsClient;
-
-    public static void main(String[] args) {
+  public static void main(String[] args) {
     SpringApplication.run(DistributedContentSearchingNodeApplication.class, args);
+  }
 
-
-        try {
-
-            if(args.length>0)
-                bsClient = new BSClient(args[0],args[1],Integer.parseInt(args[2]));
-                else
-                    bsClient= new BSClient("osura", "localhost", 8081);
-
-
-             bsClient.register();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-
-//  @Bean
-//  public BSClient bsClient() throws IOException {
-//    BSClient bsClient = new BSClient();
-//    //bsClient.unRegister("hashan", "localhost", 8081);
-//
-//    return bsClient;
-//  }
+  @Bean
+  @Scope("singleton")
+  public GNode gNode() throws Exception {
+    String uniqueID = UUID.randomUUID().toString();
+    return new GNode("node" + uniqueID);
+  }
 }

@@ -18,6 +18,7 @@
         that it is willing to share with other nodes. Suppose node x is interested in a file f. x issues a search query
         to the overlay to locate a at least one node y containing that particular file. Once the node is identified, the
         file f can be exchanged between X and y.
+        https://github.com/Hashan-Rashmi-Perera/Distributed-Content-Searching-UOM
     </description>
 
     <properties>
