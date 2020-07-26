@@ -26,12 +26,16 @@ $ java -jar distributed-content-searching-node-0.0.1-SNAPSHOT.jar --server.port=
 ```shell script
 sh run.sh <number of node>
 ``` 
-example
+##### example
 ```shell script
 sh run.sh 1
 ```
 
 ##### Swagger url 
 ```html
-http://localhost:7788/swagger-ui.html
+http://localhost:<port>/swagger-ui.html
+```
+##### example
+```shell script
+http://localhost:8084/swagger-ui.html
 ```

@@ -1,6 +1,6 @@
 #!/bin/bash
 n=$1
-#mvn clean install -DskipTests;
+mvn clean install -DskipTests;
 path="distributed-content-searching-node/target/*.jar"
 port=8080
 konsole --new-tab -e java -cp BootstrapServer/Java/: BootstrapServer &
