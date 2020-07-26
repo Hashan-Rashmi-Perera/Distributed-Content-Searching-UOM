@@ -1,19 +1,23 @@
 package lk.uom.cse.fusion.distributedcontentsearchingnode.core;
 
-import javafx.scene.control.TextArea;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.Constants;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.BSClient;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp.FTPClient;
 import lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp.FTPServer;
+import lombok.Getter;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Logger;
 
+@Getter
 public class GNode {
 
     private final Logger LOG = Logger.getLogger(GNode.class.getName());
@@ -113,16 +117,11 @@ public class GNode {
         }
     }
 
-    public void getFile(int fileOption, TextArea textArea) {
-        try {
+    public File downloadFile(int fileOption) throws IOException {
             SearchResult fileDetail = this.searchManager.getFileDetails(fileOption);
             System.out.println("The file you requested is " + fileDetail.getFileName());
-            FTPClient ftpClient = new FTPClient(fileDetail.getAddress(), fileDetail.getTcpPort(),
-                    fileDetail.getFileName(),textArea);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            FTPClient ftpClient = new FTPClient();
+            return ftpClient.downloadFile(fileDetail.getAddress(), fileDetail.getTcpPort(), fileDetail.getFileName());
     }
 
     public String getUserName() {
