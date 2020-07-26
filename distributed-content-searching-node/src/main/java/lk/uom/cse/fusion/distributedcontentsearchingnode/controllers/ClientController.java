@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
-@RequestMapping(value = "client")
+@RequestMapping(value = "/client")
 public class ClientController {
 
     @Autowired
@@ -30,28 +30,20 @@ public class ClientController {
     private GNode gNode;
 
     @Autowired
-    FileRef fileRef;
+    private FileRef fileRef;
 
-
-    private final AtomicReference<FileRef> atomicFileRef = new AtomicReference<FileRef>(fileRef);
-
-    @GetMapping(value = "search")
-    public Map<String, SearchResult> searchForAFile(@RequestParam String fileName) {
-
-
+    @GetMapping(value = "/search")
+    public Map<String, SearchResult> searchForAFile(@RequestParam("fileName") String fileName) {
         return registerService.searchFile(fileName);
-
     }
 
-    @GetMapping(value = "download")
+    @GetMapping(value = "/download")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response downloadFileWithGet(@QueryParam("file") int fileOption) {
-
+    public Response downloadFileWithGet(@RequestParam("file") Integer fileOption) {
+        gNode.getFile(fileOption);
         File fileDownload = new File(fileRef.update());
         Response.ResponseBuilder response = Response.ok(fileDownload);
         response.header("Content-Disposition", "attachment;filename=" + fileDownload.getName());
         return response.build();
     }
-
-
 }

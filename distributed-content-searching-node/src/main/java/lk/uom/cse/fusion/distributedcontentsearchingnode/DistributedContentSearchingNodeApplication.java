@@ -28,7 +28,7 @@ public class DistributedContentSearchingNodeApplication {
 
   @Bean
   @Scope("singleton")
-  public FileRef fileRef() throws Exception {
+  public FileRef fileRef() {
     return new FileRef();
   }
 }

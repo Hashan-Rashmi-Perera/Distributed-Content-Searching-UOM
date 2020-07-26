@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @Getter
 public class FileRef {
 
-    private final AtomicReference<String> filePath = new AtomicReference<String>("");
+    private final AtomicReference<String> filePath = new AtomicReference<String>(" ");
 
     public String update() {
     String current = filePath.get();

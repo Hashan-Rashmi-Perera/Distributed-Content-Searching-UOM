@@ -13,15 +13,14 @@ import java.util.Map;
 @Service
 public class RegisterService {
 
-
     @Autowired
-    GNode gNode;
+    private GNode gNode;
 
 
     public  Map<String, SearchResult> searchFile(String fileName){
 
         if (fileName != null && !fileName.equals("")) {
-            int results = gNode.doSearch(fileName);
+            gNode.doSearch(fileName);
             return gNode.getSearchManager().getDosearchResults();
         }
         else {

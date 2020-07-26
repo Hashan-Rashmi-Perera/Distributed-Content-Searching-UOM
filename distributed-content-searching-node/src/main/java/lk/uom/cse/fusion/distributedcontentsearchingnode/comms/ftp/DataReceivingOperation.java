@@ -16,7 +16,7 @@ public class DataReceivingOperation implements Runnable {
     private TextArea textArea;
 
     @Autowired
-    FileRef fileRef;
+    private FileRef fileRef;
 
     public DataReceivingOperation(Socket server, String fileName) {
         this.serverSock = server;
