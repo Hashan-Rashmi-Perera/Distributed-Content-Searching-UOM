@@ -1,7 +1,5 @@
 package lk.uom.cse.fusion.distributedcontentsearchingnode.comms.ftp;
 
-import javafx.scene.control.TextArea;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -11,15 +9,7 @@ public class DataReceivingOperation implements Runnable {
     private BufferedReader in = null;
     private String fileName;
 
-    private TextArea textArea;
-
     public DataReceivingOperation(Socket server, String fileName) {
-        this.serverSock = server;
-        this.fileName = fileName;
-    }
-
-    public DataReceivingOperation(Socket server, String fileName, TextArea textArea){
-        this.textArea = textArea;
         this.serverSock = server;
         this.fileName = fileName;
     }
@@ -56,12 +46,7 @@ public class DataReceivingOperation implements Runnable {
 
             output.close();
             serverData.close();
-
-            if (textArea == null){
-                System.out.println("File " + fileName + " successfully downloaded.");
-            } else {
-                this.textArea.setText("File " + fileName + " successfully downloaded.");
-            }
+            System.out.println("File " + fileName + " successfully downloaded.");
 
 
         } catch (IOException ex) {
