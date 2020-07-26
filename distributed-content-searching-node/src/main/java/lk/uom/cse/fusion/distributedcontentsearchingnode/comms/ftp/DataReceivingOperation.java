@@ -29,6 +29,38 @@ public class DataReceivingOperation implements Runnable {
         }
     }
 
+    public File downloadFile() throws IOException {
+        try {
+            in = new BufferedReader(new InputStreamReader(
+                    serverSock.getInputStream()));
+            DataOutputStream dOut = new DataOutputStream(serverSock.getOutputStream());
+            dOut.writeUTF(fileName);
+            dOut.flush();
+
+            int bytesRead;
+
+            DataInputStream serverData = new DataInputStream(serverSock.getInputStream());
+
+            String fileName = serverData.readUTF();
+            OutputStream output = new FileOutputStream(fileName);
+            long size = serverData.readLong();
+            byte[] buffer = new byte[1024];
+            while (size > 0 && (bytesRead = serverData.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1) {
+                output.write(buffer, 0, bytesRead);
+                size -= bytesRead;
+            }
+
+            output.close();
+            serverData.close();
+            in.close();
+            return new File(fileName);
+        } catch (IOException ex) {
+            System.err.println("server error. Connection closed.");
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public void receiveFile() {
         try {
             int bytesRead;
