@@ -8,5 +8,5 @@ for (( i = 1; i <= $n; i++ )); do
     echo $path;
     p=`expr $port + $i`;
     konsole --new-tab -e java -Xms10M -Xmx20M -jar $path --server.port=$p &
-    sleep 5
+    sleep 10
 done
