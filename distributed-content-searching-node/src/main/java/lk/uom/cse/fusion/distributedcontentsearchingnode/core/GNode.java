@@ -30,6 +30,7 @@ public class GNode {
     private MessageBroker messageBroker;
     private SearchManager searchManager;
     private FTPServer ftpServer;
+    private RoutingTable routingTable;
 
     public GNode (String userName) throws Exception {
 
