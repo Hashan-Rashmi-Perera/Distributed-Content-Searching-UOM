@@ -1,7 +1,7 @@
 # Distributed-Content-Searching-UOM
 
 * Based on : [Distributed Content Searching](https://github.com/Sathiyakugan/Distributed-Content-Searching)
-* Tranfrom to a REST full web service with Swagger 
+* Transform to a REST full web service with Swagger 
 
 
 ## Steps to run
